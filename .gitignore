@@ -361,3 +361,12 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Archivos de desarrollo de base de datos y estructura backend
+DataAccess_Plan_Implementacion.md
+DataManagment_Plan_Implementacion.md
+retazo_marker_ddl_v2.sql
+retazo_market_constraints_v1.sql
+retazo_market_pedidos_entrega_fisica_v1.sql
+retazo_market_productos_colores_v1.sql
+retazo_market_sequences_v1.sql

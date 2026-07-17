@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Servicio.RetazoMarket.Api/Servicio.RetazoMarket.Api.csproj" />
+  <Project Path="Servicio.RetazoMarket.Business/Servicio.RetazoMarket.Business.csproj" />
+  <Project Path="Servicio.RetazoMarket.DataAccess/Servicio.RetazoMarket.DataAccess.csproj" />
+  <Project Path="Servicio.RetazoMarket.DataManagment/Servicio.RetazoMarket.DataManagment.csproj" />
+</Solution>

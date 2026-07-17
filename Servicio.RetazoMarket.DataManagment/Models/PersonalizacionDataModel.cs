@@ -1,0 +1,14 @@
+using System.Text.Json;
+
+namespace Servicio.RetazoMarket.DataManagment.Models
+{
+    public class PersonalizacionDataModel
+    {
+        public int id_opcion { get; set; }
+        public int id_producto { get; set; }
+        public string nombre_atr { get; set; } = null!;
+        public string tipo_valor { get; set; } = null!;
+        public JsonElement valores_json { get; set; }
+        public decimal costo_adicional { get; set; }
+    }
+}

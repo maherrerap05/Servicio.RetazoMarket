@@ -13,8 +13,10 @@ namespace Servicio.RetazoMarket.DataAccess.Configurations
                 tb.HasCheckConstraint("ck_productos_estado", "prod_estado IN ('ACT','INA')");
                 tb.HasCheckConstraint("ck_productos_personalizable", "es_personalizable IN ('S','N')");
                 tb.HasCheckConstraint("ck_productos_costos_positivos", "costo_mat_prim >= 0 AND costo_mano_obra >= 0 AND precio_base >= 0 AND prod_peso > 0");
-                tb.HasCheckConstraint("ck_productos_stock", "stock_actual >= 0 AND stock_descuento >= 0");
-                tb.HasCheckConstraint("ck_productos_margen", "porcentaje_margen_ganancia = 50");
+                tb.HasCheckConstraint("ck_productos_stock", "stock_actual >= 0");
+                tb.HasCheckConstraint("ck_productos_margen", "porcentaje_margen_ganancia >= 0 AND porcentaje_margen_ganancia < 100");
+                tb.HasCheckConstraint("ck_productos_tiene_descuentos", "tiene_descuentos IN ('S','N')");
+                tb.HasCheckConstraint("ck_productos_gastos", "porcentaje_gastos_fijos >= 0 AND porcentaje_gastos_fijos <= 100 AND porcentaje_gastos_operativos >= 0 AND porcentaje_gastos_operativos <= 100");
             });
 
             builder.HasKey(p => p.id_producto).HasName("pk_productos");
@@ -29,10 +31,15 @@ namespace Servicio.RetazoMarket.DataAccess.Configurations
             builder.Property(p => p.costo_mat_prim).HasColumnName("costo_mat_prim").IsRequired().HasPrecision(10, 2);
             builder.Property(p => p.costo_mano_obra).HasColumnName("costo_mano_obra").IsRequired().HasPrecision(10, 2);
             builder.Property(p => p.porcentaje_margen_ganancia).HasColumnName("porcentaje_margen_ganancia").IsRequired().HasPrecision(10, 2);
+            builder.Property(p => p.porcentaje_gastos_fijos).HasColumnName("porcentaje_gastos_fijos").IsRequired()
+                .HasPrecision(5, 2).HasDefaultValue(0m);
+            builder.Property(p => p.porcentaje_gastos_operativos).HasColumnName("porcentaje_gastos_operativos").IsRequired()
+                .HasPrecision(5, 2).HasDefaultValue(0m);
             builder.Property(p => p.precio_base).HasColumnName("precio_base").IsRequired().HasPrecision(10, 2);
             builder.Property(p => p.es_personalizable).HasColumnName("es_personalizable").IsRequired().HasMaxLength(1).IsFixedLength();
             builder.Property(p => p.stock_actual).HasColumnName("stock_actual").IsRequired();
-            builder.Property(p => p.stock_descuento).HasColumnName("stock_descuento").IsRequired();
+            builder.Property(p => p.tiene_descuentos).HasColumnName("tiene_descuentos").IsRequired()
+                .HasMaxLength(1).IsFixedLength().HasDefaultValue("N");
             builder.Property(p => p.prod_estado).HasColumnName("prod_estado").IsRequired().HasMaxLength(3).IsFixedLength();
 
             builder.HasOne(p => p.Linea).WithMany(l => l.Productos).HasForeignKey(p => p.id_linea)

@@ -27,6 +27,7 @@ namespace Servicio.RetazoMarket.DataManagment.Interfaces
         IMovimientoProductoRepository MovimientoProductoRepository { get; }
         IPedidoRepository PedidoRepository { get; }
         IProductoPedidoRepository ProductoPedidoRepository { get; }
+        IDescuentoRepository DescuentoRepository { get; }
 
         // =========================
         // QUERY REPOSITORIES
@@ -41,6 +42,7 @@ namespace Servicio.RetazoMarket.DataManagment.Interfaces
         MovimientoMaterialQueryRepository MovimientoMaterialQueryRepository { get; }
         MovimientoProductoQueryRepository MovimientoProductoQueryRepository { get; }
         PedidoQueryRepository PedidoQueryRepository { get; }
+        DescuentoQueryRepository DescuentoQueryRepository { get; }
 
         // =========================
         // SAVE CHANGES

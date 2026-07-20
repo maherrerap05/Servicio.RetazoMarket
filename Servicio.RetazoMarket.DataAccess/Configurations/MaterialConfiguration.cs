@@ -20,7 +20,7 @@ namespace Servicio.RetazoMarket.DataAccess.Configurations
             builder.Property(m => m.id_categoria).HasColumnName("id_categoria").IsRequired();
             builder.Property(m => m.mat_nombre).HasColumnName("mat_nombre").IsRequired().HasMaxLength(100);
             builder.Property(m => m.unidad_medida).HasColumnName("unidad_medida").IsRequired().HasMaxLength(50);
-            builder.Property(m => m.stock_actual).HasColumnName("stock_actual").IsRequired();
+            builder.Property(m => m.stock_actual).HasColumnName("stock_actual").IsRequired().HasPrecision(12, 3);
             builder.Property(m => m.mat_estado).HasColumnName("mat_estado").IsRequired().HasMaxLength(3).IsFixedLength();
 
             builder.HasOne(m => m.Categoria).WithMany(c => c.Materiales).HasForeignKey(m => m.id_categoria)

@@ -43,7 +43,7 @@ namespace Servicio.RetazoMarket.DataManagment.Services
         }
 
         public async Task<MovimientoMaterialDataModel?> CrearConActualizacionStockAsync(
-            MovimientoMaterialDataModel model, int stock_resultante, CancellationToken cancellationToken = default)
+            MovimientoMaterialDataModel model, decimal stock_resultante, CancellationToken cancellationToken = default)
         {
             await _unitOfWork.BeginTransactionAsync(IsolationLevel.Serializable, cancellationToken);
             try

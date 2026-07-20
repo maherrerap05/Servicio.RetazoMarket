@@ -10,6 +10,6 @@ namespace Servicio.RetazoMarket.DataManagment.Interfaces
         Task<DataPagedResult<MovimientoMaterialDataModel>> BuscarAsync(MovimientoMaterialFiltroDataModel filtro, CancellationToken cancellationToken = default);
         Task<MovimientoMaterialDataModel> CrearAsync(MovimientoMaterialDataModel model, CancellationToken cancellationToken = default);
         Task<MovimientoMaterialDataModel?> CrearConActualizacionStockAsync(
-            MovimientoMaterialDataModel model, int stock_resultante, CancellationToken cancellationToken = default);
+            MovimientoMaterialDataModel model, decimal stock_resultante, CancellationToken cancellationToken = default);
     }
 }

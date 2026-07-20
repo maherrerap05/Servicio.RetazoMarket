@@ -6,7 +6,7 @@ namespace Servicio.RetazoMarket.DataManagment.Models
         public int id_categoria { get; set; }
         public string mat_nombre { get; set; } = null!;
         public string unidad_medida { get; set; } = null!;
-        public int stock_actual { get; set; }
+        public decimal stock_actual { get; set; }
         public string mat_estado { get; set; } = null!;
         public CategoriaMaterialResumenDataModel? Categoria { get; set; }
         public IReadOnlyCollection<ProveedorMaterialResumenDataModel> Proveedores { get; set; } = Array.Empty<ProveedorMaterialResumenDataModel>();

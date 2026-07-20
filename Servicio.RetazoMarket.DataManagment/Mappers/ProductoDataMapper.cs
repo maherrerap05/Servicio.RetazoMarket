@@ -16,10 +16,12 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
             costo_mat_prim = entity.costo_mat_prim,
             costo_mano_obra = entity.costo_mano_obra,
             porcentaje_margen_ganancia = entity.porcentaje_margen_ganancia,
+            porcentaje_gastos_fijos = entity.porcentaje_gastos_fijos,
+            porcentaje_gastos_operativos = entity.porcentaje_gastos_operativos,
             precio_base = entity.precio_base,
             es_personalizable = entity.es_personalizable,
             stock_actual = entity.stock_actual,
-            stock_descuento = entity.stock_descuento,
+            tiene_descuentos = entity.tiene_descuentos,
             prod_estado = entity.prod_estado,
             Linea = entity.Linea is null ? null : new LineaProductoResumenDataModel
             {
@@ -49,6 +51,13 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
                 url = i.url,
                 es_principal = i.es_principal,
                 orden = i.orden
+            }).ToList(),
+            Descuentos = entity.Descuentos.OrderBy(d => d.cantidad_minima).ThenBy(d => d.id_descuento).Select(d => new DescuentoResumenDataModel
+            {
+                id_descuento = d.id_descuento,
+                cantidad_minima = d.cantidad_minima,
+                porcentaje = d.porcentaje,
+                estado = d.estado
             }).ToList()
         };
 
@@ -63,10 +72,12 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
             costo_mat_prim = model.costo_mat_prim,
             costo_mano_obra = model.costo_mano_obra,
             porcentaje_margen_ganancia = model.porcentaje_margen_ganancia,
+            porcentaje_gastos_fijos = model.porcentaje_gastos_fijos,
+            porcentaje_gastos_operativos = model.porcentaje_gastos_operativos,
             precio_base = model.precio_base,
             es_personalizable = model.es_personalizable,
             stock_actual = model.stock_actual,
-            stock_descuento = model.stock_descuento,
+            tiene_descuentos = model.tiene_descuentos,
             prod_estado = model.prod_estado
         };
 
@@ -80,10 +91,12 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
             entity.costo_mat_prim = model.costo_mat_prim;
             entity.costo_mano_obra = model.costo_mano_obra;
             entity.porcentaje_margen_ganancia = model.porcentaje_margen_ganancia;
+            entity.porcentaje_gastos_fijos = model.porcentaje_gastos_fijos;
+            entity.porcentaje_gastos_operativos = model.porcentaje_gastos_operativos;
             entity.precio_base = model.precio_base;
             entity.es_personalizable = model.es_personalizable;
             entity.stock_actual = model.stock_actual;
-            entity.stock_descuento = model.stock_descuento;
+            entity.tiene_descuentos = model.tiene_descuentos;
             entity.prod_estado = model.prod_estado;
         }
     }

@@ -40,6 +40,7 @@ namespace Servicio.RetazoMarket.DataAccess.Context
         public DbSet<PersonalizacionEntity> Personalizaciones => Set<PersonalizacionEntity>();
         public DbSet<ImagenEntity> Imagenes => Set<ImagenEntity>();
         public DbSet<FavoritoEntity> Favoritos => Set<FavoritoEntity>();
+        public DbSet<DescuentoEntity> Descuentos => Set<DescuentoEntity>();
 
         // =========================
         // MOVIMIENTOS DE INVENTARIO
@@ -69,6 +70,7 @@ namespace Servicio.RetazoMarket.DataAccess.Context
             modelBuilder.ApplyConfiguration(new PersonalizacionConfiguration());
             modelBuilder.ApplyConfiguration(new ImagenConfiguration());
             modelBuilder.ApplyConfiguration(new FavoritoConfiguration());
+            modelBuilder.ApplyConfiguration(new DescuentoConfiguration());
             modelBuilder.ApplyConfiguration(new MovimientoMaterialConfiguration());
             modelBuilder.ApplyConfiguration(new MovimientoProductoConfiguration());
             modelBuilder.ApplyConfiguration(new PedidoConfiguration());

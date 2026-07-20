@@ -13,10 +13,12 @@ namespace Servicio.RetazoMarket.DataAccess.Entities
         public decimal costo_mat_prim { get; set; }
         public decimal costo_mano_obra { get; set; }
         public decimal porcentaje_margen_ganancia { get; set; }
+        public decimal porcentaje_gastos_fijos { get; set; }
+        public decimal porcentaje_gastos_operativos { get; set; }
         public decimal precio_base { get; set; }
         public string es_personalizable { get; set; } = null!;
         public int stock_actual { get; set; }
-        public int stock_descuento { get; set; }
+        public string tiene_descuentos { get; set; } = null!;
         public string prod_estado { get; set; } = null!;
 
         public LineaEntity Linea { get; set; } = null!;
@@ -26,5 +28,6 @@ namespace Servicio.RetazoMarket.DataAccess.Entities
         public ICollection<FavoritoEntity> Favoritos { get; set; } = new List<FavoritoEntity>();
         public ICollection<MovimientoProductoEntity> Movimientos { get; set; } = new List<MovimientoProductoEntity>();
         public ICollection<ProductoPedidoEntity> DetallesPedidos { get; set; } = new List<ProductoPedidoEntity>();
+        public ICollection<DescuentoEntity> Descuentos { get; set; } = new List<DescuentoEntity>();
     }
 }

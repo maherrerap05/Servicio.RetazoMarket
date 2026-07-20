@@ -31,7 +31,7 @@ namespace Servicio.RetazoMarket.DataManagment.Services
         public async Task<DataPagedResult<ProductoDataModel>> BuscarAsync(ProductoFiltroDataModel filtro, CancellationToken cancellationToken = default)
         {
             var result = await _unitOfWork.ProductoQueryRepository.BuscarAsync(filtro.nombre, filtro.id_linea, filtro.estado,
-                filtro.es_personalizable, filtro.conStock, filtro.precioMinimo, filtro.precioMaximo,
+                filtro.es_personalizable, filtro.tiene_descuentos, filtro.conStock, filtro.precioMinimo, filtro.precioMaximo,
                 filtro.PageNumber, filtro.PageSize, cancellationToken);
             return DataPagedResultMapper.ToDataPagedResult(result, ProductoDataMapper.ToDataModel);
         }

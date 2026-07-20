@@ -13,15 +13,18 @@ namespace Servicio.RetazoMarket.DataManagment.Models
         public decimal costo_mat_prim { get; set; }
         public decimal costo_mano_obra { get; set; }
         public decimal porcentaje_margen_ganancia { get; set; }
+        public decimal porcentaje_gastos_fijos { get; set; }
+        public decimal porcentaje_gastos_operativos { get; set; }
         public decimal precio_base { get; set; }
         public string es_personalizable { get; set; } = null!;
         public int stock_actual { get; set; }
-        public int stock_descuento { get; set; }
+        public string tiene_descuentos { get; set; } = null!;
         public string prod_estado { get; set; } = null!;
         public LineaProductoResumenDataModel? Linea { get; set; }
         public IReadOnlyCollection<ProductoMaterialResumenDataModel> Materiales { get; set; } = Array.Empty<ProductoMaterialResumenDataModel>();
         public IReadOnlyCollection<PersonalizacionResumenDataModel> Personalizaciones { get; set; } = Array.Empty<PersonalizacionResumenDataModel>();
         public IReadOnlyCollection<ImagenResumenDataModel> Imagenes { get; set; } = Array.Empty<ImagenResumenDataModel>();
+        public IReadOnlyCollection<DescuentoResumenDataModel> Descuentos { get; set; } = Array.Empty<DescuentoResumenDataModel>();
     }
 
     public class LineaProductoResumenDataModel
@@ -36,7 +39,7 @@ namespace Servicio.RetazoMarket.DataManagment.Models
         public int id_material { get; set; }
         public string mat_nombre { get; set; } = null!;
         public string unidad_medida { get; set; } = null!;
-        public int cantidad_req { get; set; }
+        public decimal cantidad_req { get; set; }
         public string es_personalizable { get; set; } = null!;
     }
 
@@ -55,5 +58,13 @@ namespace Servicio.RetazoMarket.DataManagment.Models
         public string url { get; set; } = null!;
         public string es_principal { get; set; } = null!;
         public int orden { get; set; }
+    }
+
+    public class DescuentoResumenDataModel
+    {
+        public int id_descuento { get; set; }
+        public int cantidad_minima { get; set; }
+        public decimal porcentaje { get; set; }
+        public string estado { get; set; } = null!;
     }
 }

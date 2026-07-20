@@ -36,6 +36,7 @@ namespace Servicio.RetazoMarket.DataManagment.Services
         public IMovimientoProductoRepository MovimientoProductoRepository { get; }
         public IPedidoRepository PedidoRepository { get; }
         public IProductoPedidoRepository ProductoPedidoRepository { get; }
+        public IDescuentoRepository DescuentoRepository { get; }
 
         // =========================
         // QUERY REPOSITORIES
@@ -50,6 +51,7 @@ namespace Servicio.RetazoMarket.DataManagment.Services
         public MovimientoMaterialQueryRepository MovimientoMaterialQueryRepository { get; }
         public MovimientoProductoQueryRepository MovimientoProductoQueryRepository { get; }
         public PedidoQueryRepository PedidoQueryRepository { get; }
+        public DescuentoQueryRepository DescuentoQueryRepository { get; }
 
         public UnitOfWork(RetazoMarketDbContext context)
         {
@@ -73,6 +75,7 @@ namespace Servicio.RetazoMarket.DataManagment.Services
             MovimientoProductoRepository = new MovimientoProductoRepository(_context);
             PedidoRepository = new PedidoRepository(_context);
             ProductoPedidoRepository = new ProductoPedidoRepository(_context);
+            DescuentoRepository = new DescuentoRepository(_context);
 
             RolQueryRepository = new RolQueryRepository(_context);
             ClienteQueryRepository = new ClienteQueryRepository(_context);
@@ -84,6 +87,7 @@ namespace Servicio.RetazoMarket.DataManagment.Services
             MovimientoMaterialQueryRepository = new MovimientoMaterialQueryRepository(_context);
             MovimientoProductoQueryRepository = new MovimientoProductoQueryRepository(_context);
             PedidoQueryRepository = new PedidoQueryRepository(_context);
+            DescuentoQueryRepository = new DescuentoQueryRepository(_context);
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

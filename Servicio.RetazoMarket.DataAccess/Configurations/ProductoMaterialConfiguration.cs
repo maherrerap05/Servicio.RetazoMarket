@@ -17,7 +17,7 @@ namespace Servicio.RetazoMarket.DataAccess.Configurations
             builder.HasKey(pm => new { pm.id_producto, pm.id_material }).HasName("pk_pro_x_mat");
             builder.Property(pm => pm.id_producto).HasColumnName("id_producto");
             builder.Property(pm => pm.id_material).HasColumnName("id_material");
-            builder.Property(pm => pm.cantidad_req).HasColumnName("cantidad_req").IsRequired();
+            builder.Property(pm => pm.cantidad_req).HasColumnName("cantidad_req").IsRequired().HasPrecision(12, 3);
             builder.Property(pm => pm.es_personalizable).HasColumnName("es_personalizable").IsRequired().HasMaxLength(1).IsFixedLength();
 
             builder.HasOne(pm => pm.Producto).WithMany(p => p.Materiales).HasForeignKey(pm => pm.id_producto)

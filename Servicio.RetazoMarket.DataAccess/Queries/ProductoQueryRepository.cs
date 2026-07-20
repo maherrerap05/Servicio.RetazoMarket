@@ -12,7 +12,7 @@ namespace Servicio.RetazoMarket.DataAccess.Queries
 
         public async Task<PagedResult<ProductoEntity>> BuscarAsync(
             string? nombre, int? id_linea, string? estado, string? es_personalizable,
-            bool? conStock, decimal? precioMinimo, decimal? precioMaximo,
+            string? tiene_descuentos, bool? conStock, decimal? precioMinimo, decimal? precioMaximo,
             int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
             var query = _context.Productos.AsNoTracking().AsQueryable();
@@ -25,6 +25,8 @@ namespace Servicio.RetazoMarket.DataAccess.Queries
                 query = query.Where(p => p.prod_estado == estado);
             if (!string.IsNullOrWhiteSpace(es_personalizable))
                 query = query.Where(p => p.es_personalizable == es_personalizable);
+            if (!string.IsNullOrWhiteSpace(tiene_descuentos))
+                query = query.Where(p => p.tiene_descuentos == tiene_descuentos);
             if (conStock.HasValue)
                 query = conStock.Value ? query.Where(p => p.stock_actual > 0) : query.Where(p => p.stock_actual == 0);
             if (precioMinimo.HasValue)

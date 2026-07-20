@@ -11,7 +11,7 @@ namespace Servicio.RetazoMarket.DataAccess.Queries
         public MaterialQueryRepository(RetazoMarketDbContext context) => _context = context;
 
         public async Task<PagedResult<MaterialEntity>> BuscarAsync(
-            string? nombre, int? id_categoria, string? estado, int? stockMinimo, int? stockMaximo,
+            string? nombre, int? id_categoria, string? estado, decimal? stockMinimo, decimal? stockMaximo,
             int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
             var query = _context.Materiales.AsNoTracking().AsQueryable();

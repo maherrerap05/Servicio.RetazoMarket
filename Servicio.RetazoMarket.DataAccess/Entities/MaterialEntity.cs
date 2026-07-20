@@ -6,7 +6,7 @@ namespace Servicio.RetazoMarket.DataAccess.Entities
         public int id_categoria { get; set; }
         public string mat_nombre { get; set; } = null!;
         public string unidad_medida { get; set; } = null!;
-        public int stock_actual { get; set; }
+        public decimal stock_actual { get; set; }
         public string mat_estado { get; set; } = null!;
 
         public CategoriaMaterialEntity Categoria { get; set; } = null!;

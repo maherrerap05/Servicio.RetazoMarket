@@ -17,6 +17,7 @@ namespace Servicio.RetazoMarket.DataAccess.Repositories
             await _context.Productos.AsNoTracking().AsSplitQuery().Include(p => p.Linea)
                 .Include(p => p.Materiales).ThenInclude(pm => pm.Material)
                 .Include(p => p.Personalizaciones).Include(p => p.Imagenes)
+                .Include(p => p.Descuentos)
                 .FirstOrDefaultAsync(p => p.id_producto == id_producto, cancellationToken);
 
         public async Task<ProductoEntity?> ObtenerParaActualizarAsync(int id_producto, CancellationToken cancellationToken = default) =>

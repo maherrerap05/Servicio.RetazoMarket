@@ -11,7 +11,8 @@ namespace Servicio.RetazoMarket.DataAccess.Configurations
             builder.ToTable("personalizacion", "public", tb =>
             {
                 tb.HasCheckConstraint("ck_personalizacion_costo", "costo_adicional >= 0");
-                tb.HasCheckConstraint("ck_personalizacion_tipo_valor", "tipo_valor IN ('LISTA','MATERIAL')");
+                tb.HasCheckConstraint("ck_personalizacion_tipo_valor", "tipo_valor IN ('LISTA','MATERIAL','TEXTO','MEDIDA','COLOR')");
+                tb.HasCheckConstraint("ck_personalizacion_valores_json_objeto", "jsonb_typeof(valores_json) = 'object'");
             });
 
             builder.HasKey(p => p.id_opcion).HasName("pk_personalizacion");

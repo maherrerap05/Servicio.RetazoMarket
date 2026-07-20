@@ -8,14 +8,18 @@ namespace Servicio.RetazoMarket.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<MovimientoMaterialEntity> builder)
         {
-            builder.ToTable("mov_materiales", "public");
+            builder.ToTable("mov_materiales", "public", tb =>
+            {
+                tb.HasCheckConstraint("ck_mov_materiales_tipo", "tipo_movimiento IN ('ING','EGR','AJP','AJN')");
+                tb.HasCheckConstraint("ck_mov_materiales_cantidad", "cantidad > 0");
+            });
 
             builder.HasKey(m => m.id_movimiento).HasName("pk_mov_materiales");
             builder.Property(m => m.id_movimiento).HasColumnName("id_movimiento").ValueGeneratedOnAdd()
                 .HasDefaultValueSql("nextval('seq_mov_materiales_id'::regclass)");
             builder.Property(m => m.id_material).HasColumnName("id_material").IsRequired();
             builder.Property(m => m.tipo_movimiento).HasColumnName("tipo_movimiento").IsRequired().HasMaxLength(3).IsFixedLength();
-            builder.Property(m => m.cantidad).HasColumnName("cantidad").IsRequired();
+            builder.Property(m => m.cantidad).HasColumnName("cantidad").IsRequired().HasPrecision(12, 3);
             builder.Property(m => m.fecha_mov).HasColumnName("fecha_mov").IsRequired()
                 .HasColumnType("timestamp without time zone")
                 .HasConversion(value => DateTime.SpecifyKind(value, DateTimeKind.Unspecified),

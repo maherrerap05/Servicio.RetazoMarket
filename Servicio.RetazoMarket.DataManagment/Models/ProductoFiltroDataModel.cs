@@ -6,6 +6,7 @@ namespace Servicio.RetazoMarket.DataManagment.Models
         public int? id_linea { get; set; }
         public string? estado { get; set; }
         public string? es_personalizable { get; set; }
+        public string? tiene_descuentos { get; set; }
         public bool? conStock { get; set; }
         public decimal? precioMinimo { get; set; }
         public decimal? precioMaximo { get; set; }

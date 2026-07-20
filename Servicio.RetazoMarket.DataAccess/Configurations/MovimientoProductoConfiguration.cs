@@ -8,7 +8,11 @@ namespace Servicio.RetazoMarket.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<MovimientoProductoEntity> builder)
         {
-            builder.ToTable("mov_productos", "public");
+            builder.ToTable("mov_productos", "public", tb =>
+            {
+                tb.HasCheckConstraint("ck_mov_productos_tipo", "tipo_movimiento IN ('ING','EGR','AJP','AJN')");
+                tb.HasCheckConstraint("ck_mov_productos_cantidad", "cantidad > 0");
+            });
 
             builder.HasKey(m => m.id_movimiento2).HasName("pk_mov_productos");
             builder.Property(m => m.id_movimiento2).HasColumnName("id_movimiento2").ValueGeneratedOnAdd()

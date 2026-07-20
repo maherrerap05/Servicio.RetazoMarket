@@ -1,0 +1,2 @@
+namespace Servicio.RetazoMarket.Business.DTOs.MovimientoProducto;
+public class MovimientoProductoResponse { public int id_movimiento2 {get;set;} public int id_producto {get;set;} public string tipo_movimiento {get;set;}=null!; public int cantidad {get;set;} public DateTime fecha_mov {get;set;} public string motivo_mov {get;set;}=null!; public string? producto_nombre {get;set;} public int? stock_resultante {get;set;} }

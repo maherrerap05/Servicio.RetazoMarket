@@ -1,0 +1,1 @@
+using Servicio.RetazoMarket.DataManagment.Models;namespace Servicio.RetazoMarket.DataManagment.Interfaces;public interface IImagenAdministracionDataService {Task<ImagenDataModel> CrearAsync(ImagenDataModel model,CancellationToken ct=default);Task<ImagenDataModel?> ActualizarAsync(ImagenDataModel model,CancellationToken ct=default);}

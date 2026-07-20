@@ -22,6 +22,9 @@ namespace Servicio.RetazoMarket.DataAccess.Repositories
             return await _context.Favoritos
                 .AsNoTracking()
                 .Include(f => f.Producto)
+                    .ThenInclude(p => p.Linea)
+                .Include(f => f.Producto)
+                    .ThenInclude(p => p.Imagenes)
                 .FirstOrDefaultAsync(
                     f => f.id_cliente == id_cliente && f.id_producto == id_producto,
                     cancellationToken);
@@ -35,6 +38,8 @@ namespace Servicio.RetazoMarket.DataAccess.Repositories
                 .AsNoTracking()
                 .Include(f => f.Producto)
                     .ThenInclude(p => p.Linea)
+                .Include(f => f.Producto)
+                    .ThenInclude(p => p.Imagenes)
                 .Where(f => f.id_cliente == id_cliente)
                 .OrderBy(f => f.Producto.prod_nombre)
                 .ThenBy(f => f.id_producto)

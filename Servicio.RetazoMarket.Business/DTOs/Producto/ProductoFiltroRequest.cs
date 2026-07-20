@@ -1,0 +1,2 @@
+namespace Servicio.RetazoMarket.Business.DTOs.Producto;
+public class ProductoFiltroRequest { public string? nombre {get;set;} public int? id_linea {get;set;} public string? estado {get;set;} public string? es_personalizable {get;set;} public string? tiene_descuentos {get;set;} public bool? con_stock {get;set;} public decimal? precio_minimo {get;set;} public decimal? precio_maximo {get;set;} public int page_number {get;set;}=1; public int page_size {get;set;}=10; }

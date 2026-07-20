@@ -1,0 +1,1 @@
+namespace Servicio.RetazoMarket.Business.DTOs.ProductoMaterial;public class CrearProductoMaterialRequest { public int id_producto {get;set;} public int id_material {get;set;} public decimal cantidad_req {get;set;} public string es_personalizable {get;set;}="N"; }

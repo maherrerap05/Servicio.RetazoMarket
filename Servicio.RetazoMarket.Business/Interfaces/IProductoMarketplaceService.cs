@@ -1,0 +1,2 @@
+using Servicio.RetazoMarket.Business.DTOs.Producto;using Servicio.RetazoMarket.DataManagment.Models.Common;
+namespace Servicio.RetazoMarket.Business.Interfaces;public interface IProductoMarketplaceService {Task<ProductoMarketplaceResponse?> ObtenerPorIdAsync(int id,CancellationToken ct=default);Task<DataPagedResult<ProductoMarketplaceResponse>> BuscarAsync(ProductoMarketplaceFiltroRequest f,CancellationToken ct=default);}

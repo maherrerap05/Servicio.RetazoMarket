@@ -1,0 +1,2 @@
+using Servicio.RetazoMarket.DataManagment.Models;
+namespace Servicio.RetazoMarket.DataManagment.Interfaces;public interface IDescuentoAdministracionDataService {Task<DescuentoDataModel> CrearAsync(DescuentoDataModel model,CancellationToken ct=default);Task<DescuentoDataModel?> ActualizarAsync(DescuentoDataModel model,CancellationToken ct=default);Task<bool> InactivarAsync(int idDescuento,CancellationToken ct=default);}

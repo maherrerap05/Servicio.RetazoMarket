@@ -1,0 +1,3 @@
+using System.Text.Json;
+namespace Servicio.RetazoMarket.Business.DTOs.Producto;
+public class CrearProductoRequest { public int id_linea {get;set;} public string prod_nombre {get;set;}=null!; public decimal prod_peso {get;set;} public string prod_descripcion {get;set;}=null!; public JsonElement colores {get;set;} public decimal costo_mat_prim {get;set;} public decimal costo_mano_obra {get;set;} public decimal porcentaje_margen_ganancia {get;set;} public decimal porcentaje_gastos_fijos {get;set;} public decimal porcentaje_gastos_operativos {get;set;} public int stock_actual {get;set;} public string es_personalizable {get;set;}="N"; public string tiene_descuentos {get;set;}="N"; public string prod_estado {get;set;}="ACT"; }

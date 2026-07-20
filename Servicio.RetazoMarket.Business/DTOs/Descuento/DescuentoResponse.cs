@@ -1,0 +1,1 @@
+namespace Servicio.RetazoMarket.Business.DTOs.Descuento;public class DescuentoResponse {public int id_descuento {get;set;}public int id_producto {get;set;}public int cantidad_minima {get;set;}public decimal porcentaje {get;set;}public string estado {get;set;}=null!;public string? producto_nombre {get;set;}}

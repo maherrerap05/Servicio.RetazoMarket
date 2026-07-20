@@ -1,0 +1,1 @@
+namespace Servicio.RetazoMarket.Business.DTOs.Descuento;public class DescuentoFiltroRequest {public int? id_producto {get;set;}public int? cantidad_minima {get;set;}public decimal? porcentaje {get;set;}public string? estado {get;set;}public int page_number {get;set;}=1;public int page_size {get;set;}=10;}

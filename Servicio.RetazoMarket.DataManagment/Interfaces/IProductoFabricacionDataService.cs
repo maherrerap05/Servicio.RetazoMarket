@@ -1,0 +1,1 @@
+using Servicio.RetazoMarket.DataManagment.Models;namespace Servicio.RetazoMarket.DataManagment.Interfaces;public interface IProductoFabricacionDataService {Task<ProductoDataModel> RegistrarAsync(RegistrarProductoFabricadoDataModel model,CancellationToken cancellationToken=default);}

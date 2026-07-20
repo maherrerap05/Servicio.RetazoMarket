@@ -1,0 +1,1 @@
+namespace Servicio.RetazoMarket.Business.DTOs.Imagen;public class CrearImagenRequest {public int id_producto {get;set;}public string url {get;set;}=null!;public string es_principal {get;set;}="N";public int orden {get;set;}}

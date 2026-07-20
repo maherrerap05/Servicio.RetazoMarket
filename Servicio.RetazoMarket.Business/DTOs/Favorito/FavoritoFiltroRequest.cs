@@ -1,0 +1,1 @@
+namespace Servicio.RetazoMarket.Business.DTOs.Favorito;public class FavoritoFiltroRequest {public int id_cliente {get;set;}public string? nombre_producto {get;set;}public int? id_linea {get;set;}public string? estado_producto {get;set;}public int page_number {get;set;}=1;public int page_size {get;set;}=10;}

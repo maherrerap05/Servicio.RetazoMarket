@@ -31,7 +31,8 @@ namespace Servicio.RetazoMarket.DataManagment.Services
         public async Task<DataPagedResult<MaterialDataModel>> BuscarAsync(MaterialFiltroDataModel filtro, CancellationToken cancellationToken = default)
         {
             var result = await _unitOfWork.MaterialQueryRepository.BuscarAsync(filtro.nombre, filtro.id_categoria, filtro.estado,
-                filtro.stockMinimo, filtro.stockMaximo, filtro.PageNumber, filtro.PageSize, cancellationToken);
+                filtro.stockMinimo, filtro.stockMaximo, filtro.codigo_proveedor,
+                filtro.PageNumber, filtro.PageSize, cancellationToken);
             return DataPagedResultMapper.ToDataPagedResult(result, MaterialDataMapper.ToDataModel);
         }
 

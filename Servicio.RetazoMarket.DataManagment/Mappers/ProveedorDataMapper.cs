@@ -8,6 +8,7 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
         public static ProveedorDataModel ToDataModel(ProveedorEntity entity) => new()
         {
             id_proveedor = entity.id_proveedor,
+            codigo_proveedor = entity.codigo_proveedor,
             prov_nombre = entity.prov_nombre,
             prov_telefono = entity.prov_telefono,
             prov_correo = entity.prov_correo,
@@ -28,6 +29,7 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
         public static ProveedorEntity ToEntity(ProveedorDataModel model) => new()
         {
             id_proveedor = model.id_proveedor,
+            codigo_proveedor = model.codigo_proveedor,
             prov_nombre = model.prov_nombre,
             prov_telefono = model.prov_telefono,
             prov_correo = model.prov_correo,
@@ -37,6 +39,7 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
 
         public static void ApplyToEntity(ProveedorDataModel model, ProveedorEntity entity)
         {
+            entity.codigo_proveedor = model.codigo_proveedor;
             entity.prov_nombre = model.prov_nombre;
             entity.prov_telefono = model.prov_telefono;
             entity.prov_correo = model.prov_correo;

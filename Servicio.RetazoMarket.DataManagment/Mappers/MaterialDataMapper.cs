@@ -22,6 +22,7 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
             Proveedores = entity.Proveedores.Select(pm => new ProveedorMaterialResumenDataModel
             {
                 id_proveedor = pm.id_proveedor,
+                codigo_proveedor = pm.Proveedor?.codigo_proveedor ?? string.Empty,
                 prov_nombre = pm.Proveedor?.prov_nombre ?? string.Empty,
                 prov_estado = pm.Proveedor?.prov_estado ?? string.Empty,
                 origen = pm.origen,

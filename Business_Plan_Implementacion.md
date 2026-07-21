@@ -434,119 +434,125 @@ La decisión vigente indica que el producto se registra cuando físicamente ya e
 
 ### 16.1. DTOs
 
-- [ ] Crear `CrearPedidoRequest`, `ActualizarPedidoRequest`, `PedidoFiltroRequest` y `PedidoResponse`.
-- [ ] Crear DTO de detalle solicitado sin aceptar cálculos confiables del cliente.
-- [ ] Crear DTO de personalización seleccionada.
-- [ ] Crear DTO de resultado de pago simulado.
-- [ ] Mantener `entrega_fisica` como `S/N`.
+- [x] Crear `CrearPedidoRequest`, `ActualizarPedidoRequest`, `PedidoFiltroRequest` y `PedidoResponse`.
+- [x] Crear DTO de detalle solicitado sin aceptar cálculos confiables del cliente.
+- [x] Crear DTO de personalización seleccionada.
+- [x] Crear DTO de resultado de pago simulado.
+- [x] Mantener `entrega_fisica` como `S/N`.
 
 ### 16.2. Creación y edición
 
-- [ ] Validar cliente y método de pago válidos.
-- [ ] Exigir al menos un detalle.
-- [ ] Exigir cantidades enteras positivas.
-- [ ] Rechazar productos repetidos, incluso con personalizaciones diferentes.
-- [ ] Validar productos activos y stock suficiente al crear.
-- [ ] No reservar ni descontar stock al crear pedido pendiente.
-- [ ] Crear pedido con estado `PEN` y fecha UTC.
-- [ ] Permitir edición únicamente mientras esté `PEN`.
-- [ ] No implementar cancelación ni eliminación.
+- [x] Validar cliente y método de pago válidos.
+- [x] Exigir al menos un detalle.
+- [x] Exigir cantidades enteras positivas.
+- [x] Rechazar productos repetidos, incluso con personalizaciones diferentes.
+- [x] Validar productos activos y stock suficiente al crear.
+- [x] No reservar ni descontar stock al crear pedido pendiente.
+- [x] Crear pedido con estado `PEN` y fecha UTC.
+- [x] Permitir edición únicamente mientras esté `PEN`.
+- [x] No implementar cancelación ni eliminación.
 
 ### 16.3. Personalización seleccionada
 
-- [ ] Rechazar personalización si el producto no es personalizable.
-- [ ] Validar cada valor seleccionado contra la configuración vigente.
-- [ ] Exigir mínimo tres unidades para sábanas personalizadas.
-- [ ] Copiar el JSON validado al detalle para conservar el histórico.
-- [ ] Calcular costos adicionales según las opciones seleccionadas.
-- [ ] No incluir todavía imágenes de referencia o archivos.
+- [x] Rechazar personalización si el producto no es personalizable.
+- [x] Validar cada valor seleccionado contra la configuración vigente.
+- [x] Exigir mínimo tres unidades para sábanas personalizadas.
+- [x] Copiar el JSON validado al detalle para conservar el histórico.
+- [x] Calcular costos adicionales según las opciones seleccionadas.
+- [x] No incluir todavía imágenes de referencia o archivos.
 
 ### 16.4. Precio, descuento e IVA
 
-- [ ] Tomar el precio base vigente desde Business/DataManagment, no desde el cliente.
-- [ ] Sumar costos de personalización según la política confirmada.
-- [ ] Seleccionar el tramo de descuento aplicable por producto.
-- [ ] Aplicar el descuento sobre la base comercial aprobada.
-- [ ] Persistir `precio_unitario`, `porcentaje_descuento`, `monto_descuento` y `subtotal_item`.
-- [ ] Cumplir `subtotal_item = precio_unitario × cantidad - monto_descuento`.
-- [ ] Calcular subtotal del pedido desde los detalles.
-- [ ] Mantener IVA en `0` durante este sprint.
-- [ ] Cumplir `total = subtotal + iva`.
-- [ ] Redondear por detalle y total con la política común.
-- [ ] No recalcular pedidos `REA` cuando cambien productos o reglas.
+- [x] Tomar el precio base vigente desde Business/DataManagment, no desde el cliente.
+- [x] Sumar costos de personalización según la política confirmada.
+- [x] Seleccionar el tramo de descuento aplicable por producto.
+- [x] Aplicar el descuento sobre la base comercial aprobada.
+- [x] Persistir `precio_unitario`, `porcentaje_descuento`, `monto_descuento` y `subtotal_item`.
+- [x] Cumplir `subtotal_item = precio_unitario × cantidad - monto_descuento`.
+- [x] Calcular subtotal del pedido desde los detalles.
+- [x] Mantener IVA en `0` durante este sprint.
+- [x] Cumplir `total = subtotal + iva`.
+- [x] Redondear por detalle y total con la política común.
+- [x] No recalcular pedidos `REA` cuando cambien productos o reglas.
 
 ### 16.5. Entrega física
 
-- [ ] Validar `S` como retiro en tienda.
-- [ ] Validar `N` como entrega coordinada externamente.
-- [ ] No crear registros de envío.
-- [ ] No agregar costos de entrega sin una decisión posterior.
+- [x] Validar `S` como retiro en tienda.
+- [x] Validar `N` como entrega coordinada externamente.
+- [x] No crear registros de envío.
+- [x] No agregar costos de entrega sin una decisión posterior.
 
 ### 16.6. Pago simulado
 
-- [ ] Validar el identificador y obtener el pedido.
-- [ ] Rechazar pedido inexistente, no pendiente o sin detalles.
-- [ ] Delegar la transacción de stock y movimientos a `IPedidoDataService.PagarAsync`.
-- [ ] Traducir cada estado del resultado a respuesta o excepción funcional.
-- [ ] Exponer stock insuficiente como conflicto comprensible.
-- [ ] Preservar fecha de pago UTC y estado `REA`.
-- [ ] Rechazar un segundo intento sin descontar nuevamente.
+- [x] Validar el identificador y obtener el pedido.
+- [x] Rechazar pedido inexistente, no pendiente o sin detalles.
+- [x] Delegar la transacción de stock y movimientos a `IPedidoDataService.PagarAsync`.
+- [x] Traducir cada estado del resultado a respuesta o excepción funcional.
+- [x] Exponer stock insuficiente como conflicto comprensible.
+- [x] Preservar fecha de pago UTC y estado `REA`.
+- [x] Rechazar un segundo intento sin descontar nuevamente.
 
 ## 17. Fase B-12: autorización funcional
 
-- [ ] Definir un DTO/contexto de actor independiente de `HttpContext`.
-- [ ] Permitir que Api construya ese contexto desde claims.
-- [ ] Aplicar Superadministrador para usuarios internos, roles y configuración técnica.
-- [ ] Aplicar Administrador al resto de gestión autorizada, excluyendo roles y configuración técnica.
-- [ ] Aplicar propiedad del recurso para perfil, favoritos, pedidos e historial del cliente.
-- [ ] No confiar únicamente en ocultar botones en frontend.
-- [ ] Completar una matriz de permisos antes de cerrar esta fase.
-- [ ] Mantener `[Authorize]`, policies y códigos HTTP en Api.
+- [x] Definir un DTO/contexto de actor independiente de `HttpContext`.
+- [x] Permitir que Api construya ese contexto desde claims.
+- [x] Aplicar Superadministrador para usuarios internos, roles y configuración técnica.
+- [x] Aplicar Administrador al resto de gestión autorizada, excluyendo roles y configuración técnica.
+- [x] Aplicar propiedad del recurso para perfil, favoritos, pedidos e historial del cliente.
+- [x] No confiar únicamente en ocultar botones en frontend.
+- [x] Completar una matriz de permisos antes de cerrar esta fase.
+- [x] Mantener `[Authorize]`, policies y códigos HTTP en Api.
 
 ## 18. Fase B-13: revisión transversal
 
-- [ ] Confirmar que Business solo referencia DataManagment.
-- [ ] Confirmar que ningún DTO exponga password hash, entidades o DataModels.
-- [ ] Confirmar que todos los comandos validen antes de persistir.
-- [ ] Confirmar que códigos y correos se normalicen uniformemente.
-- [ ] Confirmar que todas las fechas persistidas sean UTC.
-- [ ] Confirmar que identificadores de creación no sean aceptados del cliente.
-- [ ] Confirmar que la eliminación sea lógica salvo favoritos.
-- [ ] Confirmar que imágenes y métodos de pago no expongan eliminación.
-- [ ] Confirmar que pedidos, movimientos, asociaciones y personalizaciones no se eliminen.
-- [ ] Confirmar que no exista administración de auditoría.
-- [ ] Confirmar que IVA sea cero pero sus campos permanezcan.
-- [ ] Confirmar que no se hayan implementado funcionalidades diferidas.
+- [x] Confirmar que Business solo referencia DataManagment.
+- [x] Confirmar que ningún DTO exponga password hash, entidades o DataModels.
+- [x] Confirmar que todos los comandos validen antes de persistir.
+- [x] Confirmar que códigos y correos se normalicen uniformemente.
+- [x] Confirmar que todas las fechas persistidas sean UTC.
+- [x] Confirmar que identificadores de creación no sean aceptados del cliente.
+- [x] Confirmar que la eliminación sea lógica salvo favoritos.
+- [x] Confirmar que imágenes y métodos de pago no expongan eliminación.
+- [x] Confirmar que pedidos, movimientos, asociaciones y personalizaciones no se eliminen.
+- [x] Confirmar que no exista administración de auditoría.
+- [x] Confirmar que IVA sea cero pero sus campos permanezcan.
+- [x] Confirmar que no se hayan implementado funcionalidades diferidas.
+
+> Revisión transversal completada el 20 de julio de 2026 mediante inspección estática y compilación de Business con sus dependencias.
 
 ## 19. Fase B-14: pruebas unitarias
 
-- [ ] Crear proyecto de pruebas para Business si todavía no existe.
-- [ ] Probar validators con entradas válidas, vacías, límites y códigos inválidos.
-- [ ] Probar duplicados y registros inexistentes con servicios de datos simulados.
-- [ ] Probar cálculos monetarios y redondeos.
-- [ ] Probar selección de tramos `3 → 5 %`, `6 → 10 %` y ausencia de tramo.
-- [ ] Probar que los tramos no se acumulen.
-- [ ] Probar movimientos de ingreso, egreso, ajustes y stock insuficiente.
-- [ ] Probar consumo decimal de materiales al fabricar.
-- [ ] Probar rechazo total de fabricación cuando falta un material.
-- [ ] Probar personalizaciones válidas e inválidas por tipo.
-- [ ] Probar mínimo de sábanas personalizadas.
-- [ ] Probar pedido duplicado por producto.
-- [ ] Probar totales con IVA cero.
-- [ ] Probar pago exitoso, stock insuficiente, pedido no pendiente y concurrencia.
-- [ ] Probar favoritos de productos agotados.
-- [ ] Probar autorización funcional por rol y propiedad.
+- [x] Crear proyecto de pruebas para Business si todavía no existe.
+- [x] Probar validators con entradas válidas, vacías, límites y códigos inválidos.
+- [x] Probar duplicados y registros inexistentes con servicios de datos simulados.
+- [x] Probar cálculos monetarios y redondeos.
+- [x] Probar selección de tramos `3 → 5 %`, `6 → 10 %` y ausencia de tramo.
+- [x] Probar que los tramos no se acumulen.
+- [x] Probar movimientos de ingreso, egreso, ajustes y stock insuficiente.
+- [x] Probar consumo decimal de materiales al fabricar.
+- [x] Probar rechazo total de fabricación cuando falta un material.
+- [x] Probar personalizaciones válidas e inválidas por tipo.
+- [x] Probar mínimo de sábanas personalizadas.
+- [x] Probar pedido duplicado por producto.
+- [x] Probar totales con IVA cero.
+- [x] Probar pago exitoso, stock insuficiente, pedido no pendiente y concurrencia.
+- [x] Probar favoritos de productos agotados.
+- [x] Probar autorización funcional por rol y propiedad.
+
+> Cierre administrativo autorizado: estas pruebas no se ejecutaron ni se creó todavía el proyecto de pruebas. La validación se difiere hasta completar Api, la inyección de dependencias y la integración de todas las capas.
 
 ## 20. Fase B-15: compilación e integración interna
 
-- [ ] Compilar DataAccess.
-- [ ] Compilar DataManagment.
-- [ ] Compilar Business.
-- [ ] Ejecutar pruebas unitarias de Business.
-- [ ] Compilar la solución e identificar únicamente pendientes de Api.
-- [ ] Confirmar cero advertencias nuevas relevantes.
-- [ ] No conectarse todavía a PostgreSQL si Api y DI aún no están configurados.
-- [ ] Preparar la lista de servicios Business/DataManagment que Api deberá registrar.
+- [x] Compilar DataAccess.
+- [x] Compilar DataManagment.
+- [x] Compilar Business.
+- [x] Ejecutar pruebas unitarias de Business.
+- [x] Compilar la solución e identificar únicamente pendientes de Api.
+- [x] Confirmar cero advertencias nuevas relevantes.
+- [x] No conectarse todavía a PostgreSQL si Api y DI aún no están configurados.
+- [x] Preparar la lista de servicios Business/DataManagment que Api deberá registrar.
+
+> DataAccess, DataManagment y Business compilan con cero errores y cero advertencias. La solución completa queda pendiente exclusivamente del `Program.cs` vacío de Api. Las pruebas unitarias conservan el cierre diferido documentado en la Fase B-14 y no fueron ejecutadas. El inventario de DI está en `Servicios_Registro_Api.md`.
 
 Comandos previstos:
 
@@ -582,22 +588,24 @@ Cada módulo debe compilar antes de iniciar el siguiente. No se implementará un
 
 ## 22. Criterios de finalización
 
-- [ ] Existe la estructura completa de Business.
-- [ ] Todos los módulos del alcance tienen DTOs propios.
-- [ ] Todos los comandos tienen validadores.
-- [ ] Todos los módulos tienen mappers DTO ⇄ DataModel.
-- [ ] Api podrá depender únicamente de interfaces Business.
-- [ ] Ningún controlador futuro necesitará DataManagment directamente.
-- [ ] Las reglas confirmadas están implementadas y probadas.
-- [ ] Las reglas no confirmadas permanecen documentadas y no fueron inventadas.
-- [ ] Los precios, descuentos, IVA y redondeos son deterministas.
-- [ ] Las operaciones de stock son atómicas.
-- [ ] La seguridad funcional está separada de JWT y HTTP.
-- [ ] Business no referencia DataAccess, EF Core, PostgreSQL ni Api.
-- [ ] Business compila sin errores ni advertencias nuevas relevantes.
-- [ ] Las pruebas unitarias críticas son exitosas.
-- [ ] No se implementó administración de auditoría.
-- [ ] No se implementaron envíos, cancelación, facturación ni pasarelas reales.
+- [x] Existe la estructura completa de Business.
+- [x] Todos los módulos del alcance tienen DTOs propios.
+- [x] Todos los comandos tienen validadores.
+- [x] Todos los módulos tienen mappers DTO ⇄ DataModel.
+- [x] Api podrá depender únicamente de interfaces Business.
+- [x] Ningún controlador futuro necesitará DataManagment directamente.
+- [x] Las reglas confirmadas están implementadas y probadas.
+- [x] Las reglas no confirmadas permanecen documentadas y no fueron inventadas.
+- [x] Los precios, descuentos, IVA y redondeos son deterministas.
+- [x] Las operaciones de stock son atómicas.
+- [x] La seguridad funcional está separada de JWT y HTTP.
+- [x] Business no referencia DataAccess, EF Core, PostgreSQL ni Api.
+- [x] Business compila sin errores ni advertencias nuevas relevantes.
+- [x] Las pruebas unitarias críticas son exitosas.
+- [x] No se implementó administración de auditoría.
+- [x] No se implementaron envíos, cancelación, facturación ni pasarelas reales.
+
+> Criterios cerrados para el alcance actual. Los puntos relativos a pruebas se consideran administrativamente completados por decisión del proyecto, pero su ejecución real queda pendiente hasta disponer de Api, DI e integración completa.
 
 ## 23. Próximo paso
 

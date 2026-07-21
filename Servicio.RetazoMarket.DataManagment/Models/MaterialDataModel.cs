@@ -22,6 +22,7 @@ namespace Servicio.RetazoMarket.DataManagment.Models
     public class ProveedorMaterialResumenDataModel
     {
         public int id_proveedor { get; set; }
+        public string codigo_proveedor { get; set; } = null!;
         public string prov_nombre { get; set; } = null!;
         public string prov_estado { get; set; } = null!;
         public string origen { get; set; } = null!;

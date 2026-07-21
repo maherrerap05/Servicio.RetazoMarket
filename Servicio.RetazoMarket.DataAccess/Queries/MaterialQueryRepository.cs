@@ -12,6 +12,7 @@ namespace Servicio.RetazoMarket.DataAccess.Queries
 
         public async Task<PagedResult<MaterialEntity>> BuscarAsync(
             string? nombre, int? id_categoria, string? estado, decimal? stockMinimo, decimal? stockMaximo,
+            string? codigoProveedor,
             int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
             var query = _context.Materiales.AsNoTracking().AsQueryable();
@@ -26,9 +27,13 @@ namespace Servicio.RetazoMarket.DataAccess.Queries
                 query = query.Where(m => m.stock_actual >= stockMinimo.Value);
             if (stockMaximo.HasValue)
                 query = query.Where(m => m.stock_actual <= stockMaximo.Value);
+            if (!string.IsNullOrWhiteSpace(codigoProveedor))
+                query = query.Where(m => m.Proveedores.Any(pm =>
+                    pm.Proveedor.codigo_proveedor == codigoProveedor));
 
             var totalRecords = await query.CountAsync(cancellationToken);
             var items = await query.Include(m => m.Categoria)
+                .Include(m => m.Proveedores).ThenInclude(pm => pm.Proveedor)
                 .OrderBy(m => m.mat_nombre).ThenBy(m => m.id_material)
                 .Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync(cancellationToken);
 

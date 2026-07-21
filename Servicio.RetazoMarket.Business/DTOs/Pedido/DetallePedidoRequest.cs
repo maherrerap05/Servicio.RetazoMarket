@@ -1,0 +1,1 @@
+namespace Servicio.RetazoMarket.Business.DTOs.Pedido;public class DetallePedidoRequest {public int id_producto {get;set;}public int cantidad {get;set;}public IReadOnlyCollection<PersonalizacionSeleccionadaRequest> personalizaciones {get;set;}=Array.Empty<PersonalizacionSeleccionadaRequest>();}

@@ -1,0 +1,1 @@
+namespace Servicio.RetazoMarket.Business.DTOs.Pedido;public class CrearPedidoRequest {public int id_metodo {get;set;}public int id_cliente {get;set;}public string entrega_fisica {get;set;}="N";public IReadOnlyCollection<DetallePedidoRequest> detalles {get;set;}=Array.Empty<DetallePedidoRequest>();}

@@ -9,6 +9,7 @@ namespace Servicio.RetazoMarket.DataManagment.Models
         public int cantidad_min { get; set; }
         public int dias_entrega { get; set; }
         public string? material_nombre { get; set; }
+        public string? codigo_proveedor { get; set; }
         public string? proveedor_nombre { get; set; }
     }
 }

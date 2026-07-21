@@ -22,6 +22,12 @@ namespace Servicio.RetazoMarket.DataManagment.Services
             return entity is null ? null : ProveedorDataMapper.ToDataModel(entity);
         }
 
+        public async Task<ProveedorDataModel?> ObtenerPorCodigoAsync(string codigo_proveedor, CancellationToken cancellationToken = default)
+        {
+            var entity = await _unitOfWork.ProveedorRepository.ObtenerPorCodigoAsync(codigo_proveedor, cancellationToken);
+            return entity is null ? null : ProveedorDataMapper.ToDataModel(entity);
+        }
+
         public async Task<ProveedorDataModel?> ObtenerPorCorreoAsync(string prov_correo, CancellationToken cancellationToken = default)
         {
             var entity = await _unitOfWork.ProveedorRepository.ObtenerPorCorreoAsync(prov_correo, cancellationToken);
@@ -30,7 +36,7 @@ namespace Servicio.RetazoMarket.DataManagment.Services
 
         public async Task<DataPagedResult<ProveedorDataModel>> BuscarAsync(ProveedorFiltroDataModel filtro, CancellationToken cancellationToken = default)
         {
-            var result = await _unitOfWork.ProveedorQueryRepository.BuscarAsync(filtro.nombre, filtro.correo, filtro.estado,
+            var result = await _unitOfWork.ProveedorQueryRepository.BuscarAsync(filtro.codigo_proveedor, filtro.nombre, filtro.correo, filtro.estado,
                 filtro.id_material, filtro.PageNumber, filtro.PageSize, cancellationToken);
             return DataPagedResultMapper.ToDataPagedResult(result, ProveedorDataMapper.ToDataModel);
         }
@@ -65,5 +71,8 @@ namespace Servicio.RetazoMarket.DataManagment.Services
 
         public Task<bool> ExistePorCorreoAsync(string prov_correo, CancellationToken cancellationToken = default) =>
             _unitOfWork.ProveedorRepository.ExistePorCorreoAsync(prov_correo, cancellationToken);
+
+        public Task<bool> ExistePorCodigoAsync(string codigo_proveedor, CancellationToken cancellationToken = default) =>
+            _unitOfWork.ProveedorRepository.ExistePorCodigoAsync(codigo_proveedor, cancellationToken);
     }
 }

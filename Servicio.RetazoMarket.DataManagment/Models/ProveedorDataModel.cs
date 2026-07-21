@@ -3,6 +3,7 @@ namespace Servicio.RetazoMarket.DataManagment.Models
     public class ProveedorDataModel
     {
         public int id_proveedor { get; set; }
+        public string codigo_proveedor { get; set; } = null!;
         public string prov_nombre { get; set; } = null!;
         public string prov_telefono { get; set; } = null!;
         public string prov_correo { get; set; } = null!;

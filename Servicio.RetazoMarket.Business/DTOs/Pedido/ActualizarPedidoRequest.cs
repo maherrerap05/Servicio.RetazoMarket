@@ -1,0 +1,1 @@
+namespace Servicio.RetazoMarket.Business.DTOs.Pedido;public class ActualizarPedidoRequest {public int id_pedido {get;set;}public int id_metodo {get;set;}public int id_cliente {get;set;}public string entrega_fisica {get;set;}=null!;public IReadOnlyCollection<DetallePedidoRequest> detalles {get;set;}=Array.Empty<DetallePedidoRequest>();}

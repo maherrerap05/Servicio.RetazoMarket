@@ -14,6 +14,7 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
             cantidad_min = entity.cantidad_min,
             dias_entrega = entity.dias_entrega,
             material_nombre = entity.Material?.mat_nombre,
+            codigo_proveedor = entity.Proveedor?.codigo_proveedor,
             proveedor_nombre = entity.Proveedor?.prov_nombre
         };
 

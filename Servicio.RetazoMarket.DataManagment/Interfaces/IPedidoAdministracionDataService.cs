@@ -1,0 +1,1 @@
+using Servicio.RetazoMarket.DataManagment.Models;namespace Servicio.RetazoMarket.DataManagment.Interfaces;public interface IPedidoAdministracionDataService {Task<PedidoDataModel> CrearAsync(PedidoDataModel model,CancellationToken ct=default);Task<PedidoDataModel?> ActualizarPendienteAsync(PedidoDataModel model,CancellationToken ct=default);}

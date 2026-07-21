@@ -7,6 +7,7 @@ namespace Servicio.RetazoMarket.DataManagment.Models
         public string? estado { get; set; }
         public decimal? stockMinimo { get; set; }
         public decimal? stockMaximo { get; set; }
+        public string? codigo_proveedor { get; set; }
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
     }

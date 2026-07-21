@@ -1,2 +1,2 @@
 namespace Servicio.RetazoMarket.Business.DTOs.Proveedor;
-public class ActualizarProveedorRequest { public int id_proveedor {get;set;} public string prov_nombre {get;set;}=null!; public string prov_telefono {get;set;}=null!; public string prov_correo {get;set;}=null!; public string prov_direccion {get;set;}=null!; public string prov_estado {get;set;}=null!; }
+public class ActualizarProveedorRequest { public int id_proveedor {get;set;} public string codigo_proveedor {get;set;}=null!; public string prov_nombre {get;set;}=null!; public string prov_telefono {get;set;}=null!; public string prov_correo {get;set;}=null!; public string prov_direccion {get;set;}=null!; public string prov_estado {get;set;}=null!; }

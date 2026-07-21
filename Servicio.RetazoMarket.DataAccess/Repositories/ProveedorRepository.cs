@@ -20,6 +20,10 @@ namespace Servicio.RetazoMarket.DataAccess.Repositories
         public async Task<ProveedorEntity?> ObtenerParaActualizarAsync(int id_proveedor, CancellationToken cancellationToken = default) =>
             await _context.Proveedores.FirstOrDefaultAsync(p => p.id_proveedor == id_proveedor, cancellationToken);
 
+        public async Task<ProveedorEntity?> ObtenerPorCodigoAsync(string codigo_proveedor, CancellationToken cancellationToken = default) =>
+            await _context.Proveedores.AsNoTracking()
+                .FirstOrDefaultAsync(p => p.codigo_proveedor == codigo_proveedor, cancellationToken);
+
         public async Task<ProveedorEntity?> ObtenerPorCorreoAsync(string prov_correo, CancellationToken cancellationToken = default) =>
             await _context.Proveedores.AsNoTracking().FirstOrDefaultAsync(p => p.prov_correo == prov_correo, cancellationToken);
 
@@ -27,6 +31,10 @@ namespace Servicio.RetazoMarket.DataAccess.Repositories
             await _context.Proveedores.AddAsync(proveedor, cancellationToken);
 
         public void Actualizar(ProveedorEntity proveedor) => _context.Proveedores.Update(proveedor);
+
+        public async Task<bool> ExistePorCodigoAsync(string codigo_proveedor, CancellationToken cancellationToken = default) =>
+            await _context.Proveedores.AsNoTracking()
+                .AnyAsync(p => p.codigo_proveedor == codigo_proveedor, cancellationToken);
 
         public async Task<bool> ExistePorCorreoAsync(string prov_correo, CancellationToken cancellationToken = default) =>
             await _context.Proveedores.AsNoTracking().AnyAsync(p => p.prov_correo == prov_correo, cancellationToken);

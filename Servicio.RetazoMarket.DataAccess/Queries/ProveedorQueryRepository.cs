@@ -11,11 +11,13 @@ namespace Servicio.RetazoMarket.DataAccess.Queries
         public ProveedorQueryRepository(RetazoMarketDbContext context) => _context = context;
 
         public async Task<PagedResult<ProveedorEntity>> BuscarAsync(
-            string? nombre, string? correo, string? estado, int? id_material,
+            string? codigoProveedor, string? nombre, string? correo, string? estado, int? id_material,
             int pageNumber, int pageSize, CancellationToken cancellationToken = default)
         {
             var query = _context.Proveedores.AsNoTracking().AsQueryable();
 
+            if (!string.IsNullOrWhiteSpace(codigoProveedor))
+                query = query.Where(p => EF.Functions.ILike(p.codigo_proveedor, $"%{codigoProveedor}%"));
             if (!string.IsNullOrWhiteSpace(nombre))
                 query = query.Where(p => EF.Functions.ILike(p.prov_nombre, $"%{nombre}%"));
             if (!string.IsNullOrWhiteSpace(correo))

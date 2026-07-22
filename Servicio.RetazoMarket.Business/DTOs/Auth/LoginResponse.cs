@@ -1,6 +1,7 @@
 namespace Servicio.RetazoMarket.Business.DTOs.Auth;
 public class LoginResponse
 {
+    public int IdUsuario { get; set; }
     public string UserName { get; set; } = null!;
     public string Correo { get; set; } = null!;
     public bool Activo { get; set; }

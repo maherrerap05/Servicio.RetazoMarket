@@ -24,6 +24,6 @@ public class AuthService : IAuthService
             var cliente = await _clientes.ObtenerPorIdAsync(usuario.id_cliente.Value, cancellationToken);
             if (cliente is null || cliente.cli_estado != "ACT") throw new UnauthorizedBusinessException("El cliente asociado se encuentra inactivo.");
         }
-        return new LoginResponse { UserName=usuario.nombre, Correo=usuario.correo, Activo=true, IdCliente=usuario.id_cliente is > 0 ? usuario.id_cliente : null, Roles=usuario.Rol is null ? [] : [usuario.Rol.nombre_rol], Token=string.Empty, ExpirationUtc=DateTime.MinValue };
+        return new LoginResponse { IdUsuario=usuario.id_usuario, UserName=usuario.nombre, Correo=usuario.correo, Activo=true, IdCliente=usuario.id_cliente is > 0 ? usuario.id_cliente : null, Roles=usuario.Rol is null ? [] : [usuario.Rol.nombre_rol], Token=string.Empty, ExpirationUtc=DateTime.MinValue };
     }
 }

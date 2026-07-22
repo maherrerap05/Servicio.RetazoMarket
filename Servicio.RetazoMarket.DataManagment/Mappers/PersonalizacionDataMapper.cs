@@ -10,7 +10,7 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
             id_opcion = entity.id_opcion,
             id_producto = entity.id_producto,
             nombre_atr = entity.nombre_atr,
-            tipo_valor = entity.tipo_valor,
+            tipo_valor = entity.tipo_valor.Trim(),
             valores_json = JsonDataMapper.Clone(entity.valores_json),
             costo_adicional = entity.costo_adicional
         };

@@ -1,6 +1,169 @@
-@Servicio.RetazoMarket.Api_HostAddress = http://localhost:5195
+@host = https://localhost:7276
+@apiVersion = 1
+@token = REEMPLAZAR_CON_TOKEN_JWT
+@idProducto = 1
+@idPedido = 1
+@codigoProveedor = PRV-001
 
-GET {{Servicio.RetazoMarket.Api_HostAddress}}/weatherforecast/
+###
+# AUTENTICACIÓN PÚBLICA
+###
+
+### Login
+POST {{host}}/api/v{{apiVersion}}/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+  "userName": "cliente@example.test",
+  "password": "REEMPLAZAR_CON_CONTRASENA"
+}
+
+### Autorregistro Marketplace
+POST {{host}}/api/v{{apiVersion}}/auth/registro
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "Cliente",
+  "apellidos": "Prueba",
+  "correo": "cliente.nuevo@example.test",
+  "telefono": "0999999999",
+  "direccion": "Dirección local de prueba",
+  "contrasena": "REEMPLAZAR_CON_CONTRASENA"
+}
+
+###
+# MARKETPLACE PÚBLICO
+###
+
+### Buscar productos activos, incluyendo agotados
+GET {{host}}/api/v{{apiVersion}}/marketplace/productos?page_number=1&page_size=10
+Accept: application/json
+
+### Buscar productos con stock
+GET {{host}}/api/v{{apiVersion}}/marketplace/productos?con_stock=true&page_number=1&page_size=10
+Accept: application/json
+
+### Obtener detalle público de un producto
+GET {{host}}/api/v{{apiVersion}}/marketplace/productos/{{idProducto}}
 Accept: application/json
 
 ###
+# CONSULTAS ADMINISTRATIVAS
+# Requieren un token SUPERADMINISTRADOR o ADMINISTRADOR según el módulo.
+###
+
+### Consultar proveedor por código
+GET {{host}}/api/v{{apiVersion}}/internal/proveedores/codigo/{{codigoProveedor}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Buscar proveedores por código
+GET {{host}}/api/v{{apiVersion}}/internal/proveedores/buscar?codigo_proveedor={{codigoProveedor}}&page_number=1&page_size=10
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Buscar materiales por código de proveedor
+GET {{host}}/api/v{{apiVersion}}/internal/materiales/buscar?codigo_proveedor={{codigoProveedor}}&page_number=1&page_size=10
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+# FAVORITOS DEL CLIENTE AUTENTICADO
+# El id_cliente se obtiene del JWT; cualquier valor enviado por el cliente se ignora.
+###
+
+### Listar favoritos propios
+GET {{host}}/api/v{{apiVersion}}/cliente/favoritos
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Buscar favoritos propios
+GET {{host}}/api/v{{apiVersion}}/cliente/favoritos/buscar?page_number=1&page_size=10
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Agregar producto a favoritos, aunque no tenga stock
+POST {{host}}/api/v{{apiVersion}}/cliente/favoritos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_producto": {{idProducto}}
+}
+
+### Consultar un favorito propio
+GET {{host}}/api/v{{apiVersion}}/cliente/favoritos/{{idProducto}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Quitar producto de favoritos
+DELETE {{host}}/api/v{{apiVersion}}/cliente/favoritos/{{idProducto}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+# PEDIDOS DEL CLIENTE AUTENTICADO
+# El id_cliente se obtiene del JWT.
+###
+
+### Buscar pedidos propios
+GET {{host}}/api/v{{apiVersion}}/cliente/pedidos?page_number=1&page_size=10
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Consultar un pedido propio
+GET {{host}}/api/v{{apiVersion}}/cliente/pedidos/{{idPedido}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Crear pedido propio para entrega coordinada externamente
+POST {{host}}/api/v{{apiVersion}}/cliente/pedidos
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_metodo": 1,
+  "entrega_fisica": "N",
+  "detalles": [
+    {
+      "id_producto": {{idProducto}},
+      "cantidad": 1,
+      "personalizaciones": []
+    }
+  ]
+}
+
+### Actualizar pedido propio pendiente para retiro en tienda
+PUT {{host}}/api/v{{apiVersion}}/cliente/pedidos/{{idPedido}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id_metodo": 1,
+  "entrega_fisica": "S",
+  "detalles": [
+    {
+      "id_producto": {{idProducto}},
+      "cantidad": 1,
+      "personalizaciones": []
+    }
+  ]
+}
+
+### Ejecutar pago simulado del pedido propio
+POST {{host}}/api/v{{apiVersion}}/cliente/pedidos/{{idPedido}}/pagar
+Authorization: Bearer {{token}}
+Accept: application/json
+
+###
+# PAGO SIMULADO ADMINISTRATIVO
+###
+
+POST {{host}}/api/v{{apiVersion}}/internal/pedidos/{{idPedido}}/pagar
+Authorization: Bearer {{token}}
+Accept: application/json

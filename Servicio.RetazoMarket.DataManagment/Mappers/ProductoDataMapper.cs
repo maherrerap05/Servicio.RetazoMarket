@@ -41,7 +41,7 @@ namespace Servicio.RetazoMarket.DataManagment.Mappers
             {
                 id_opcion = p.id_opcion,
                 nombre_atr = p.nombre_atr,
-                tipo_valor = p.tipo_valor,
+                tipo_valor = p.tipo_valor.Trim(),
                 valores_json = JsonDataMapper.Clone(p.valores_json),
                 costo_adicional = p.costo_adicional
             }).ToList(),

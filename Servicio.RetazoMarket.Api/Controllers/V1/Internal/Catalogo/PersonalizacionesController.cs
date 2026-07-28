@@ -11,7 +11,7 @@ namespace Servicio.RetazoMarket.Api.Controllers.V1.Internal.Catalogo;
 
 [ApiController]
 [ApiVersion("1.0")]
-[Authorize(Policy = AuthorizationExtensions.SuperAdministradorPolicy)]
+[Authorize(Policy = AuthorizationExtensions.AdministradorPolicy)]
 [Route("api/v{version:apiVersion}/internal/personalizaciones")]
 public class PersonalizacionesController : ControllerBase
 {

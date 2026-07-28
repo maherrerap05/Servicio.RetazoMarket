@@ -116,10 +116,10 @@ El frontend debe tratar los filtros vacíos como parámetros omitidos. No debe e
 |---|---|---|
 | Pública | Sin token | Login, autorregistro y Marketplace |
 | Cliente | `CLIENTE` | Perfil, favoritos y pedidos propios |
-| Administrador | `ADMINISTRADOR`, `SUPERADMINISTRADOR` | Operación comercial, proveedores, productos, inventario y pedidos internos |
-| Superadministrador | `SUPERADMINISTRADOR` | Usuarios, roles y configuración de catálogos/técnicas |
+| Administrador | `ADMINISTRADOR`, `SUPERADMINISTRADOR` | Todos los módulos internos excepto usuarios y roles |
+| Superadministrador | `SUPERADMINISTRADOR` | Todo lo permitido al administrador, más usuarios y roles |
 
-El rol `ADMINISTRADOR` no puede administrar roles, usuarios, líneas, categorías de materiales, métodos de pago ni configuraciones de personalización.
+El rol `ADMINISTRADOR` puede utilizar todos los endpoints de catálogo y los demás módulos internos. Únicamente la gestión de roles y usuarios permanece reservada para `SUPERADMINISTRADOR`.
 
 ### 3.2. Login
 
@@ -442,7 +442,9 @@ Cambiar contraseña:
 
 Filtros: `nombre`, `correo`, `estado`, `id_rol`, `id_cliente`, `page_number`, `page_size`.
 
-## 8. Catálogos administrados por superadministrador
+## 8. Catálogos internos
+
+Todos los catálogos de esta sección admiten `ADMINISTRADOR` y `SUPERADMINISTRADOR`. La exclusividad del superadministrador se limita a los módulos de roles y usuarios.
 
 ### 8.1. Categorías de materiales — `/internal/categorias-materiales`
 
@@ -1002,4 +1004,3 @@ El correo es único globalmente. `DELETE` realiza eliminación lógica.
 - Las imágenes de referencia dentro de personalizaciones, DTF, dibujos y diseños quedaron fuera del alcance actual.
 - La API usa eliminación lógica en los módulos que exponen `DELETE`.
 - La tabla de auditoría no se administra mediante endpoints; se consulta directamente en base de datos cuando corresponda.
-

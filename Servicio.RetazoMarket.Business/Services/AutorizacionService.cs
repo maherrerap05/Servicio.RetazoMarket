@@ -31,7 +31,7 @@ namespace Servicio.RetazoMarket.Business.Services
         }
 
         public void ExigirGestionTecnica(ActorContext actor) =>
-            ExigirSuperAdministrador(actor);
+            ExigirAdministrador(actor);
 
         public void ExigirGestionAdministrativa(ActorContext actor) =>
             ExigirAdministrador(actor);

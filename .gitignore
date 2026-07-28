@@ -374,3 +374,13 @@ retazo_market_sequences_v1.sql
 Propuesta_Reglas_V1.md
 Reglas_Negocio_Pendientes_Confirmacion.md
 Plan_Cambios_BD_V2.md
+
+# Planes y documentos internos de implementación y pruebas
+/API_Plan_Implementacion.md
+/Business_Plan_Implementacion.md
+/DataAccess_Plan_Alineacion_BD_V2.md
+/DataManagment_Plan_Alineacion_BD_V2.md
+/Matriz_Pruebas_Api.xlsx
+/Plan_Implementacion_Codigo_Proveedor.md
+/Plan_Pruebas_API.md
+/Servicios_Registro_Api.md

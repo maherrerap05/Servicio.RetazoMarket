@@ -6,10 +6,10 @@ Esta matriz define autorización funcional sin depender de `HttpContext`, atribu
 |---|---:|---:|---:|
 | Roles | Sí | No | No |
 | Usuarios internos | Sí | No | No |
-| Categorías de materiales | Sí | No | No |
-| Líneas | Sí | No | No |
-| Métodos de pago | Sí | No | No |
-| Configuración de personalizaciones | Sí | No | No |
+| Categorías de materiales | Sí | Sí | No |
+| Líneas | Sí | Sí | No |
+| Métodos de pago | Sí | Sí | No |
+| Configuración de personalizaciones | Sí | Sí | No |
 | Clientes administrativos | Sí | Sí | Solo su perfil |
 | Proveedores y relaciones con materiales | Sí | Sí | No |
 | Materiales e inventario | Sí | Sí | No |
@@ -22,7 +22,7 @@ Esta matriz define autorización funcional sin depender de `HttpContext`, atribu
 ## Reglas de aplicación
 
 - `SUPERADMINISTRADOR` incluye las capacidades administrativas generales.
-- `ADMINISTRADOR` no puede administrar roles, usuarios internos ni configuración técnica.
+- `ADMINISTRADOR` puede utilizar todos los módulos internos excepto roles y usuarios.
 - `CLIENTE` requiere que `ActorContext.id_cliente` coincida con el propietario del recurso.
 - Ocultar controles en el frontend no reemplaza la validación de Business.
 - Api conserva la responsabilidad de `[Authorize]`, policies, lectura de claims y traducción a códigos HTTP.
